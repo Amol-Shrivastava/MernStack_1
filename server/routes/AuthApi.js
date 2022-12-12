@@ -39,7 +39,7 @@ router.post("/login", async (req, res) => {
   // const userExists = await _checkUserExists(email, res);
   const userExist = await UserModel.findOne({ email });
   if (!userExist) {
-    response.status(406).json({ message: "User not found" });
+    res.status(406).json({ message: "User not found" });
     return;
   } else {
     // Load hash(userExists.password) from your password DB.
