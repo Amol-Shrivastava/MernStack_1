@@ -55,7 +55,7 @@ router.post("/login", async (req, res) => {
         _id: userExist._id,
       };
 
-      const token = jwt.sign(payload, "some secret.");
+      const token = jwt.sign(payload, process.env.JWT_SECRET);
 
       res.status(200).json({ message: "User matched", token });
     }

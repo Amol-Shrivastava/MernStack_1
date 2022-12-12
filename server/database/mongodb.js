@@ -1,11 +1,20 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const connect = () => {
-    mongoose.connect("mongodb+srv://amol:amol1234@mern-1.hs4nfgo.mongodb.net/?retryWrites=true&w=majority").then(()=> {
-        console.log('Succesfully Connected to MongoDB');
-    }).catch(err => {
-        console.error(err);
-    }) 
-}
+  const username = process.env.MONGO_DB_USERNAME;
+  const password = process.env.MONGO_DB_PASSWORD;
+  const url = process.env.MONGO_DB_URL;
+
+  mongoose
+    .connect(
+      `mongodb+srv://${username}:${password}@${url}/?retryWrites=true&w=majority`
+    )
+    .then(() => {
+      console.log("Succesfully Connected to MongoDB");
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+};
 
 export default connect;
