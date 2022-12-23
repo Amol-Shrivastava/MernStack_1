@@ -2,6 +2,13 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import UserModel from "../models/UserModel.js";
 
+const categories = [
+  { label: "Travel", icon: "User" },
+  { label: "Shopping", icon: "User" },
+  { label: "Investment", icon: "User" },
+  { label: "Bills", icon: "User" },
+];
+
 const userRegistration = async (req, res) => {
   //1. Get all the form data
   const { email, password, firstName, lastName } = req.body;
@@ -23,6 +30,7 @@ const userRegistration = async (req, res) => {
       password: hashedPassword,
       firstName,
       lastName,
+      categories,
     });
 
     //4. Save user into the db

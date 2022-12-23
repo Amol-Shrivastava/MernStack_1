@@ -4,11 +4,7 @@ import * as TransactionController from "../controllers/TransactionController.js"
 
 const router = Router();
 
-router.get(
-  "/",
-  passport.authenticate("jwt", { session: false }),
-  TransactionController.index
-);
+router.get("/", TransactionController.index);
 
 router.post("/", TransactionController.createTransaction);
 

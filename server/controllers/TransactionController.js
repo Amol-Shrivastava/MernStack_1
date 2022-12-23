@@ -1,16 +1,20 @@
 import Transaction from "../models/Transaction.js";
 
 const index = async (req, res) => {
-  const transaction = await Transaction.find({}).sort({ createdAt: -1 });
+  const transaction = await Transaction.find({ user_id: req.user._id }).sort({
+    createdAt: -1,
+  });
   res.json({ data: transaction });
 };
 
 const createTransaction = async (req, res) => {
-  const { amount, description, date } = req.body;
+  const { amount, description, date, category_id } = req.body;
   const transaction = new Transaction({
     amount,
     description,
+    user_id: req.user._id,
     date,
+    category_id,
   });
 
   await transaction.save();
